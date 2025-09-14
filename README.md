@@ -46,7 +46,8 @@ image-processing-api/
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Node.js 14+ 
+
+- Node.js 14+
 - npm
 
 ### Installation
@@ -71,6 +72,7 @@ The API will be available at `http://localhost:5050`
 ## 📖 API Documentation
 
 ### Base URL
+
 ```
 http://localhost:5050
 ```
@@ -78,6 +80,7 @@ http://localhost:5050
 ### Endpoints
 
 #### 1. Resize Image
+
 Resize an image to specified dimensions.
 
 ```http
@@ -85,11 +88,13 @@ GET /api/images?filename={name}&width={number}&height={number}
 ```
 
 **Parameters:**
+
 - `filename` (required) - Image filename (e.g., "fjord.jpg")
 - `width` (required) - Target width in pixels
 - `height` (required) - Target height in pixels
 
 **Example:**
+
 ```http
 GET /api/images?filename=fjord.jpg&width=300&height=200
 ```
@@ -97,6 +102,7 @@ GET /api/images?filename=fjord.jpg&width=300&height=200
 **Response:** Returns the resized image directly
 
 #### 2. List Thumbnails
+
 Get a list of all available thumbnails.
 
 ```http
@@ -104,19 +110,18 @@ GET /thumbs
 ```
 
 **Response:**
+
 ```json
 {
   "success": true,
   "message": "List of all thumbnails.",
   "count": 3,
-  "thumbs": [
-    "fjord-300x200.jpg",
-    "encenadaport-400x300.jpg"
-  ]
+  "thumbs": ["fjord-300x200.jpg", "encenadaport-400x300.jpg"]
 }
 ```
 
 #### 3. Check Specific Thumbnail
+
 Check if a specific thumbnail exists.
 
 ```http
@@ -124,11 +129,13 @@ GET /thumbs?filename={thumbnail-name}
 ```
 
 **Example:**
+
 ```http
 GET /thumbs?filename=fjord-300x200.jpg
 ```
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -138,6 +145,7 @@ GET /thumbs?filename=fjord-300x200.jpg
 ```
 
 #### 4. Direct Thumbnail Access
+
 Access thumbnails directly via static files.
 
 ```http
@@ -145,6 +153,7 @@ GET /static/thumbs/{filename}
 ```
 
 **Example:**
+
 ```http
 GET /static/thumbs/fjord-300x200.jpg
 ```
@@ -152,6 +161,7 @@ GET /static/thumbs/fjord-300x200.jpg
 ## 🖼️ Available Images
 
 The API comes with sample images:
+
 - `fjord.jpg`
 - `encenadaport.jpg`
 - `icelandwaterfall.jpg`
@@ -161,12 +171,15 @@ The API comes with sample images:
 ## ⚡ Performance Features
 
 ### Intelligent Caching
+
 - First request: Processes and caches the image
 - Subsequent requests: Serves from cache instantly
 - Cache key format: `{original-name}-{width}x{height}.{ext}`
 
 ### Error Handling
+
 Comprehensive error handling for all scenarios:
+
 - Missing parameters
 - Invalid dimensions
 - File not found
@@ -181,6 +194,7 @@ npm test
 ```
 
 **Test Coverage:**
+
 - Image processing utilities
 - API endpoint validation
 - Error handling scenarios
@@ -200,12 +214,15 @@ npm run format     # Format code with Prettier
 ## 🔧 Development
 
 ### Development Mode
+
 ```bash
 npm run dev
 ```
+
 Starts the server with nodemon for automatic restarts on file changes.
 
 ### Code Quality
+
 ```bash
 npm run lint       # ESLint checks
 npm run format     # Prettier formatting
@@ -214,16 +231,19 @@ npm run format     # Prettier formatting
 ## 📊 Example Usage
 
 ### Resize an Image
+
 ```bash
 curl "http://localhost:5050/api/images?filename=fjord.jpg&width=500&height=300"
 ```
 
 ### List All Thumbnails
+
 ```bash
 curl "http://localhost:5050/thumbs"
 ```
 
 ### Check Specific Thumbnail
+
 ```bash
 curl "http://localhost:5050/thumbs?filename=fjord-500x300.jpg"
 ```
@@ -231,6 +251,7 @@ curl "http://localhost:5050/thumbs?filename=fjord-500x300.jpg"
 ## 🚨 Error Responses
 
 ### Missing Parameters
+
 ```json
 {
   "success": false,
@@ -239,6 +260,7 @@ curl "http://localhost:5050/thumbs?filename=fjord-500x300.jpg"
 ```
 
 ### Invalid Dimensions
+
 ```json
 {
   "success": false,
@@ -247,6 +269,7 @@ curl "http://localhost:5050/thumbs?filename=fjord-500x300.jpg"
 ```
 
 ### File Not Found
+
 ```json
 {
   "success": false,

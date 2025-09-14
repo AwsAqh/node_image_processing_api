@@ -1,7 +1,8 @@
-import app from './app';
+import app from "./app";
+import { Logger } from "./utilities/logger";
 
 const PORT = 5050;
 
 app.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${PORT}`);
+  Logger.info(`Server running at http://localhost:${PORT}`);
 });

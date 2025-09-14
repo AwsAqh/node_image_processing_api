@@ -1,12 +1,12 @@
-import express from 'express';
-import path from 'path';
-import imagesRoute from './routes/images';
-import thumbsRoute from './routes/thumbs';
+import express from "express";
+import path from "path";
+import imagesRoute from "./routes/images";
+import thumbsRoute from "./routes/thumbs";
 
 const app = express();
 
-app.set('json spaces', 2);
-app.get('/', (req, res) => {
+app.set("json spaces", 2);
+app.get("/", (req, res) => {
   res.send(`
     <!DOCTYPE html>
     <html lang="en">
@@ -59,18 +59,20 @@ app.get('/', (req, res) => {
   `);
 });
 
+app.use(
+  "/static/thumbs",
+  express.static(path.join(__dirname, "../assets/thumbs")),
+);
 
-app.use('/static/thumbs', express.static(path.join(__dirname, '../assets/thumbs')));
-
-app.use('/static/thumbs', (req, res, next) => {
-    res.status(404).json({
-        success: false,
-        message: 'Thumbnail image not found',
-        requestedFile: req.url,
-    });
+app.use("/static/thumbs", (req, res) => {
+  res.status(404).json({
+    success: false,
+    message: "Thumbnail image not found",
+    requestedFile: req.url,
+  });
 });
 
-app.use('/api/images', imagesRoute);
-app.use('/thumbs', thumbsRoute); 
+app.use("/api/images", imagesRoute);
+app.use("/thumbs", thumbsRoute);
 
 export default app;
