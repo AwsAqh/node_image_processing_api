@@ -8,16 +8,17 @@ const processImageController = async (
 ): Promise<void> => {
   try {
     let filename = req.query.filename as string;
-    if (!filename.toLowerCase().endsWith(".jpg")) filename += ".jpg";
-
-    const width = parseInt(req.query.width as string);
-    const height = parseInt(req.query.height as string);
 
     if (!filename) {
       Logger.error("Filename is missing");
       res.status(400).send("Filename is required");
       return;
     }
+
+    if (!filename.toLowerCase().endsWith(".jpg")) filename += ".jpg";
+
+    const width = parseInt(req.query.width as string);
+    const height = parseInt(req.query.height as string);
 
     if (!width || !height) {
       Logger.error("Width or height missing");
